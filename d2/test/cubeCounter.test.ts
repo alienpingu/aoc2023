@@ -10,6 +10,9 @@ describe("cubeCounter", () => {
             () => expect(counter.getGameID('Game 70: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(70))
         it("Should return id from one game record", 
             () => expect(counter.getGameID('Game 45: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(45))
+        it("Should return id from one game record", 
+            () => expect(counter.getGameID(' 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(0))
+
     });
     describe("getCubesQuantity", () => {
         it("Should return red, green and blue cube used in game from game record", 
