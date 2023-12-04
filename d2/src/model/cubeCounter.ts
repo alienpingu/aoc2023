@@ -26,7 +26,6 @@ export default class cubeCounter {
     getCubesQuantity = (gamesRow: string):cubeQuantity => {
         let totColors:cubeQuantity = {red: 0,green: 0,blue: 0}
         const turns = gamesRow.split(': ')[1].split('; ')
-        console.log(turns);
         
         turns.forEach(turn => {
             const rounds = turn.split(',');
@@ -54,7 +53,16 @@ export default class cubeCounter {
     };
     
     computeIdSum = ():number => {
-        return 0;
+        let counter: number = 0;
+        this.games.split('\n').forEach(gameRow => {
+            const cubeQuantity = this.getCubesQuantity(gameRow);
+            const gameID = this.getGameID(gameRow);
+            const isPossible = this.possibleGame(cubeQuantity); 
+            if (isPossible) {
+                counter = counter + gameID
+            }
+        })
+        return counter;
     } 
 
 }

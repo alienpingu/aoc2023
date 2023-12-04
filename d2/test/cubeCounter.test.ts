@@ -11,6 +11,8 @@ describe("cubeCounter", () => {
         it("Should return id from one game record", 
             () => expect(counter.getGameID('Game 45: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(45))
         it("Should return id from one game record", 
+            () => expect(counter.getGameID('Game 1000: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(1000))
+        it("Should return id from one game record", 
             () => expect(counter.getGameID(' 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toBe(0))
 
     });
@@ -20,6 +22,12 @@ describe("cubeCounter", () => {
             red: 1,
             green: 3,
             blue: 4
+        }))
+        it("Should return red, green and blue cube used in game from game record", 
+        () => expect(counter.getCubesQuantity('Game 2: 100 blue, 2222 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toStrictEqual({
+            red: 1,
+            green: 2222,
+            blue: 100
         }))
     it("Should return red, green and blue cube used in game from game record", 
         () => expect(counter.getCubesQuantity('Game 70: 10 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue')).toStrictEqual({
@@ -47,6 +55,12 @@ describe("cubeCounter", () => {
                 green: 10,
                 blue: 10
             })).toBe(false))
+        it("Should return if game is possible from compare the cube quantity", 
+            () => expect(counter.possibleGame({
+                red: 0,
+                green: 0,
+                blue: 0
+            })).toBe(true))
         it("Should return if game is possible from compare the cube quantity", 
             () => expect(counter.possibleGame({
                 red: 1,
